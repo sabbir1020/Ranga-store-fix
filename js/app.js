@@ -3,19 +3,14 @@ const loadProducts = () => {
   fetch(url)
     .then(response => response.json())
     .then(data => showProducts(data));
-    // console.log(data)
 };
 loadProducts();
 
 // show all product in UI 
 const showProducts = (products) => {
-  // console.log(products);
   const allProducts = products.map((pd) => pd);
-  // console.log(allProducts)
   for (const product of allProducts) {
-    // console.log(product);
     const image = product.images;
-    // console.log(image)
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = 
@@ -35,6 +30,7 @@ const showProducts = (products) => {
     document.getElementById("all-products").appendChild(div);
   }
 };
+   // My cart code
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
@@ -47,7 +43,6 @@ const addToCart = (id, price) => {
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseInt(element);
-  // console.log(converted);
   return converted;
 };
 
@@ -55,21 +50,18 @@ const getInputValue = (id) => {
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
-  // consol.log(convertPrice)
   const total = convertedOldPrice + convertPrice;
-  // console.log(total) elta product er price
   document.getElementById(id).innerText = Math.round(total);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  document.getElementById(id).innerText = Math.round(value).toFixed(2);
 };
 
-// update delivery charge and total Tax
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
-  if (priceConverted > 200) {
+    if (priceConverted > 200) {
     setInnerText("delivery-charge", 30);
     setInnerText("total-tax", priceConverted * 0.2);
   }
@@ -89,6 +81,5 @@ const updateTotal = () => {
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
-  // console.log(grandTotal)
-  document.getElementById("total").innerText = grandTotal;
+    document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
