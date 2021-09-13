@@ -15,7 +15,7 @@ const showProducts = (products) => {
   for (const product of allProducts) {
     // console.log(product);
     const image = product.images;
-    console.log(image)
+    // console.log(image)
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = 
@@ -47,6 +47,7 @@ const addToCart = (id, price) => {
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseInt(element);
+  // console.log(converted);
   return converted;
 };
 
@@ -54,7 +55,9 @@ const getInputValue = (id) => {
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
+  // consol.log(convertPrice)
   const total = convertedOldPrice + convertPrice;
+  // console.log(total) elta product er price
   document.getElementById(id).innerText = Math.round(total);
 };
 
@@ -78,6 +81,7 @@ const updateTaxAndCharge = () => {
     setInnerText("delivery-charge", 60);
     setInnerText("total-tax", priceConverted * 0.4);
   }
+  updateTotal()
 };
 
 //grandTotal update function
@@ -85,5 +89,6 @@ const updateTotal = () => {
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
+  // console.log(grandTotal)
   document.getElementById("total").innerText = grandTotal;
 };
